@@ -1,0 +1,27 @@
+{% extends "base.html" %}   
+
+{% block content %}
+    <form action="{% url "notes.new" %}" method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        {% if form.errors %}
+            <div class="alert alert-danger my-5">
+                {{ form.errors.title.as_text }}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-success">New Note</button>
+
+        {% comment %} <div class="mb-3">
+            <label for="notesTitle" class="form-label">Notes Title</label>
+            <input type="text" class="form-control" id="notesTitle" placeholder="Notes Titlte" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="NotesText" class="form-label">Your Note</label>
+            <textarea class="form-control" id="NotesText" rows="3" name="text"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">New Note</button> {% endcomment %}
+    </form>
+{% endblock %}
